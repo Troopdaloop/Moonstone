@@ -57,6 +57,9 @@ while True:
             # Handle attack input
             if keys[pygame.K_SPACE] and attack_timer == 0:
                 attack_timer = ATTACK_DURATION
+
+            # Update attack_rect every frame while attack is active
+            if attack_timer > 0:
                 if player.last_direction == "right":
                     attack_rect = pygame.Rect(
                         player.rect.right,
@@ -71,9 +74,6 @@ while True:
                         ATTACK_WIDTH,
                         ATTACK_HEIGHT
                     )
-
-            # Update attack timer
-            if attack_timer > 0:
                 attack_timer -= 1
             else:
                 attack_rect = None
