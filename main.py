@@ -13,6 +13,11 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Sunstone")
 clock = pygame.time.Clock()
 
+#Load Background
+background = pygame.image.load("assets\images\Castle Background.jpg")
+background = pygame.transform.scale(background, (WIDTH, HEIGHT))
+
+
 # Game states
 MENU = "menu"
 PLAYING = "playing"
@@ -116,7 +121,7 @@ while True:
                     running = False  # Exit game loop to return to menu
 
             # Draw everything
-            screen.fill(BG_COLOR)
+            screen.blit(background, (0, 0))
             player.draw(screen)
             for enemy in enemies:
                 enemy.draw(screen)
