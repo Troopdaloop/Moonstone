@@ -7,7 +7,7 @@ class Menu:
     def __init__(self, screen):
         self.screen = screen
         self.font = pygame.font.SysFont(None, 60)
-        self.options = ["Start Game", "Quit"]
+        self.options = ["Adventure", "Challenge", "Equipment", "Quit"]
         self.selected = 0
 
     def draw(self):
@@ -35,8 +35,13 @@ class Menu:
                     elif event.key == pygame.K_DOWN:
                         self.selected = (self.selected + 1) % len(self.options)
                     elif event.key == pygame.K_RETURN:
-                        if self.options[self.selected] == "Start Game":
-                            return "playing"
-                        elif self.options[self.selected] == "Quit":
+                        selected = self.options[self.selected]
+                        if selected == "Adventure":
+                            return "adventure"
+                        elif selected == "Challenge":
+                            return "challenge"
+                        elif selected == "Equipment":
+                            return "equipment"
+                        elif selected == "Quit":
                             pygame.quit()
                             sys.exit()
