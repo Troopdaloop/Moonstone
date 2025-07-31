@@ -6,6 +6,7 @@ from settings import *
 from player import Player
 from enemy import Enemy, spawn_wave
 from menu import Menu
+#from level import level
 
 # Initialize pygame
 pygame.init()
