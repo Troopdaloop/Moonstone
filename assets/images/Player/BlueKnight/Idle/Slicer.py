@@ -1,6 +1,8 @@
 from PIL import Image
 import os
 
+# Update the number of frames num_frames to match
+
 # Load the sprite sheet
 sprite_sheet = Image.open("BlueKnightSpriteSheet.png")  # Replace with your actual file name
 
