@@ -115,7 +115,7 @@ while True:
             for enemy in enemies:
                 enemy.draw(screen)
             if attack_rect:
-                pygame.draw.rect(screen, (255, 0, 0), attack_rect)
+                pass #pygame.draw.rect(screen, (255, 0, 0), attack_rect)
 
             pygame.display.flip()
 

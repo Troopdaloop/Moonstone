@@ -27,10 +27,20 @@ class Player:
             img = pygame.transform.scale(img, (PLAYER_WIDTH, PLAYER_HEIGHT))
             self.idle_frames.append(img)
 
+        # Load attack frames
+        self.attack_frames = []
+        attack_folder = "assets/images/Player/BlueKnight/Attack1/player_frames"
+        for i in range(10):
+            path = os.path.join(attack_folder, f"frame_{i}.png")
+            img = pygame.image.load(path).convert_alpha()
+            img = pygame.transform.scale(img, (PLAYER_WIDTH, PLAYER_HEIGHT))
+            self.attack_frames.append(img)
+
         self.current_frame = 0
         self.frame_timer = 0
         self.frame_delay = 5
         self.is_moving = False
+        self.is_attacking = False
 
     def move(self, keys):
         self.is_moving = False
@@ -48,6 +58,10 @@ class Player:
         if keys[pygame.K_DOWN] or keys[pygame.K_s]:
             self.rect.y += self.speed
             self.is_moving = True
+        if keys[pygame.K_SPACE]:
+            self.is_attacking = True
+            self.current_frame = 0
+            self.frame_timer = 0
 
         self.rect.x = max(0, min(self.rect.x, 800 - self.rect.width))
         self.rect.y = max(0, min(self.rect.y, 600 - self.rect.height))
@@ -57,9 +71,17 @@ class Player:
         self.frame_timer += 1
         if self.frame_timer >= self.frame_delay:
             self.frame_timer = 0
-            self.current_frame = (self.current_frame + 1) % 10
+            self.current_frame += 1
 
-        frames = self.walk_frames if self.is_moving else self.idle_frames
+        if self.is_attacking:
+            frames = self.attack_frames
+            if self.current_frame >= len(frames):
+                self.current_frame = 0
+                self.is_attacking = False
+        else:
+            frames = self.walk_frames if self.is_moving else self.idle_frames
+            self.current_frame %= len(frames)
+
         frame = frames[self.current_frame]
 
         # Flip if facing right (sprite faces left by default)
