@@ -4,7 +4,7 @@ import pygame
 import sys
 from settings import *
 from player import Player
-from enemy import Enemy, spawn_wave
+from enemy import BatEnemy, spawn_wave
 from menu import Menu
 #from level import level
 
@@ -58,7 +58,7 @@ while True:
             if attack_timer > 0:
                 if player.last_direction == "right":
                     attack_rect = pygame.Rect(
-                        player.rect.right,
+                        player.rect.right - 10, #slight offset inward
                         player.rect.centery - ATTACK_HEIGHT // 2,
                         ATTACK_WIDTH,
                         ATTACK_HEIGHT

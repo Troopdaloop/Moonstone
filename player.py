@@ -11,7 +11,7 @@ class Player:
 
         # Load walk frames
         self.walk_frames = []
-        walk_folder = "assets/images/Player/BlueKnight/Walk/player_frames"
+        walk_folder = "assets/images/Player/Knight/Walk/player_frames"
         for i in range(10):
             path = os.path.join(walk_folder, f"frame_{i}.png")
             img = pygame.image.load(path).convert_alpha()
@@ -20,7 +20,7 @@ class Player:
 
         # Load idle frames
         self.idle_frames = []
-        idle_folder = "assets/images/Player/BlueKnight/Idle/player_frames"
+        idle_folder = "assets/images/Player/Knight/Idle/player_frames"
         for i in range(10):
             path = os.path.join(idle_folder, f"frame_{i}.png")
             img = pygame.image.load(path).convert_alpha()
@@ -29,8 +29,8 @@ class Player:
 
         # Load attack frames
         self.attack_frames = []
-        attack_folder = "assets/images/Player/BlueKnight/Attack1/player_frames"
-        for i in range(10):
+        attack_folder = "assets/images/Player/Knight/Attack/Effect/player_frames"
+        for i in range(8):
             path = os.path.join(attack_folder, f"frame_{i}.png")
             img = pygame.image.load(path).convert_alpha()
             img = pygame.transform.scale(img, (PLAYER_WIDTH, PLAYER_HEIGHT))
