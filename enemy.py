@@ -19,6 +19,7 @@ class BatEnemy(pygame.sprite.Sprite):
         for filename in sorted(os.listdir(folder)):
             if filename.endswith(".png"):
                 img = pygame.image.load(os.path.join(folder, filename)).convert_alpha()
+                img = pygame.transform.scale(img, (ENEMY_WIDTH, ENEMY_HEIGHT))
                 frames.append(img)
         return frames
 

@@ -1,3 +1,5 @@
+import pygame
+
 class Scaler:
     def __init__(self, base_resolution, current_resolution, enable_letterboxing=False):
         self.base_width, self.base_height = base_resolution

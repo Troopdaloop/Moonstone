@@ -6,17 +6,23 @@ from settings import *
 from player import Player
 from enemy import BatEnemy, spawn_wave
 from menu import Menu
+from scaler import Scaler
 #from level import level
 
 # Initialize pygame
 pygame.init()
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+info = pygame.display.Info()
+screen_resolution = (info.current_w, info.current_h)
+base_resolution = (800, 600)
+screen = pygame.display.set_mode(screen_resolution, pygame.FULLSCREEN)  
 pygame.display.set_caption("Sunstone")
 clock = pygame.time.Clock()
+scaler = Scaler(base_resolution, screen_resolution)
+
 
 # Load Background
-background = pygame.image.load("assets/images/Castle Background.jpg")
-background = pygame.transform.scale(background, (WIDTH, HEIGHT))
+background = pygame.image.load("assets/images/levels/Wasteland.jpg")
+background = pygame.transform.scale(background, screen_resolution)
 
 # Game states
 MENU = "menu"
@@ -50,7 +56,8 @@ while True:
                     sys.exit()
 
             keys = pygame.key.get_pressed()
-            player.move(keys)
+            player.move(keys)  
+
 
             if keys[pygame.K_SPACE] and attack_timer == 0:
                 attack_timer = ATTACK_DURATION
